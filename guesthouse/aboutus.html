@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Booking Form</title>
+</head>
+
+<body>
+    <header>
+  <div class="logo">Guest House</div>
+  <nav>
+    <!-- Desktop Navigation -->
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="aboutus.html">About Us</a></li>
+    </ul>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+  </ul>
+</div>
+
+<div class="containerb">
+  <h1>Booking Form</h1>
+  <form action="submit-booking.php" method="POST">
+    <!-- Personal Information Section -->
+    <div class="form-group">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="telephone">Telephone (Home):</label>
+      <input type="tel" id="telephone" name="telephone" placeholder="Enter your phone number" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    </div>
+
+    <!-- Booking Dates Section -->
+    <div class="form-group">
+      <label for="arrival">Arrival Date (D/M/Y):</label>
+      <input type="date" id="arrival" name="arrival" required>
+    </div>
+
+    <div class="form-group">
+      <label for="departure">Departure Date (D/M/Y):</label>
+      <input type="date" id="departure" name="departure" required>
+    </div>
+
+    <div class="form-group">
+      <label for="flight">Flight Details (Arrival):</label>
+      <input type="text" id="flight" name="flight" placeholder="Enter flight details">
+    </div>
+
+    <div class="form-group">
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" placeholder="Enter your address"></textarea>
+    </div>
+
+    <!-- Guests Information Section -->
+    <div class="form-group">
+      <label for="adults">Adults:</label>
+      <input type="number" id="adults" name="adults" placeholder="Enter number of adults" min="1" required>
+    </div>
+
+    <div class="form-group">
+      <label for="children">Children:</label>
+      <input type="number" id="children" name="children" placeholder="Enter number of children" min="0">
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age (Children):</label>
+      <input type="text" id="age" name="age" placeholder="Enter ages of children">
+    </div>
+
+    <!-- Room Selection Section -->
+    <div class="form-group">
+      <label for="room">Room Type:</label>
+      <select id="room" name="room" required>
+        <option value="">-- Please Select --</option>
+        <option value="standard-single">Standard Single (Non A/C)</option>
+        <option value="standard-double">Standard Double (Non A/C)</option>
+        <option value="triple-room">Triple Room (Non A/C)</option>
+        <option value="single-deluxe">Single Deluxe (A/C)</option>
+        <option value="double-deluxe">Double Deluxe (A/C)</option>
+        <option value="triple-deluxe">Triple Deluxe (A/C)</option>
+        <option value="family-room">Family Room (3+2 - A/C)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="rooms">Total Rooms Required:</label>
+      <input type="number" id="rooms" name="rooms" placeholder="Enter number of rooms" min="1" required>
+    </div>
+
+    <div class="form-group">
+      <label>Transfers Required:</label>
+      <div style="display: flex; gap: 20px; align-items: center;">
+        <label style="display: flex; align-items: center; gap: 5px;">
+          Yes
+          <input type="radio" name="transfer" value="yes" required>
+        </label>
+        <label style="display: flex; align-items: center; gap: 5px;">
+          No
+          <input type="radio" name="transfer" value="no">
+        </label>
+      </div>
+    </div>    
+
+    <div class="form-group">
+      <label for="special-request">Special Request If Any:</label>
+      <textarea id="special-request" name="special-request" placeholder="Enter any special requests"></textarea>
+    </div>
+
+    <!-- Button Group -->
+    <div class="button-group">
+      <button type="submit">Send Request</button>
+      <button type="reset">Clear Form</button>
+    </div>
+  </form>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="containeri">
+    <p>&copy; 2026 Guest House. All rights reserved.</p>
+  </div>
+</footer>
+<script src="scripts.js"></script>
+
+</body>
+</html>
