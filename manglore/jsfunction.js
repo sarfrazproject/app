@@ -30,6 +30,22 @@ function updateDateLabel() {
     }
 }
 
+function addMinutes(time, minutes) {
+    let [h, m] = time.split(":").map(Number);
+
+    let date = new Date();
+    date.setHours(h);
+    date.setMinutes(m + minutes);
+
+    let hh = date.getHours();
+    let mm = date.getMinutes().toString().padStart(2, '0');
+
+    // convert to 12 hour format
+    hh = hh % 12 || 12;
+
+    return hh.toString().padStart(2,'0') + ":" + mm;
+}
+
 // Function to get prayer timings
 function getPrayerTimes() {
     var currentDay = currentDate.getDate();
@@ -48,6 +64,14 @@ function getPrayerTimes() {
         document.getElementById('ishaShafiTime').innerText = currentPrayerTimings.ishaShafi;
         document.getElementById('ishaHanafiTime').innerText = currentPrayerTimings.ishaHanafi;
         document.getElementById('sunriseTime').innerText = currentPrayerTimings.sunrise;
+
+        document.getElementById('subahJamaath').innerText = addMinutes(currentPrayerTimings.subah,15);
+        document.getElementById('luhrJamaath').innerText = addMinutes(currentPrayerTimings.luhr,15);
+        document.getElementById('asarShafiJamaath').innerText = addMinutes(currentPrayerTimings.asarShafi,15);
+        document.getElementById('asarHanafiJamaath').innerText = addMinutes(currentPrayerTimings.asarHanafi,15);
+        document.getElementById('maghribJamaath').innerText = addMinutes(currentPrayerTimings.maghrib,3);
+        document.getElementById('ishaShafiJamaath').innerText = addMinutes(currentPrayerTimings.ishaShafi,15);
+        document.getElementById('ishaHanafiJamaath').innerText = addMinutes(currentPrayerTimings.ishaHanafi,15);
     } else {
         console.error('Prayer timings not found for the selected day.');
     }
