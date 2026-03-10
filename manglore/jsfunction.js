@@ -6,6 +6,7 @@ function showPreviousDay() {
     currentDate.setDate(currentDate.getDate() - 1);
     getPrayerTimes();
     updateDateLabel();
+    updateHijriDate();
 }
 
 // Function to display next day's timings
@@ -13,6 +14,7 @@ function showNextDay() {
     currentDate.setDate(currentDate.getDate() + 1);
     getPrayerTimes();
     updateDateLabel();
+    updateHijriDate();
 }
 
 // Function to update the date label
@@ -77,6 +79,38 @@ function getPrayerTimes() {
     }
 }
 
+async function updateHijriDate(){
+
+const day = currentDate.getDate();
+const month = currentDate.getMonth() + 1;
+const year = currentDate.getFullYear();
+
+const url = `https://api.aladhan.com/v1/gToH/${day}-${month}-${year}`;
+
+try{
+
+const response = await fetch(url);
+const data = await response.json();
+
+let hijriDay = parseInt(data.data.hijri.day);
+let hijriMonth = data.data.hijri.month.en;
+let hijriYear = data.data.hijri.year;
+
+/* manual adjustment */
+const hijriOffset = -1; // change if needed
+
+hijriDay = hijriDay + hijriOffset;
+
+document.getElementById("hijriDateLabel").innerText =
+`${hijriDay} ${hijriMonth} ${hijriYear} AH`;
+
+}
+catch(error){
+console.log("Hijri date error", error);
+}
+
+}
+
 // Open calendar
 function openCalendar() {
 document.getElementById("datePicker").showPicker();
@@ -89,11 +123,13 @@ const selectedDate = new Date(this.value);
 currentDate = selectedDate;
 getPrayerTimes();
 updateDateLabel();
+updateHijriDate();
 });
 
 // Initialize page
 getPrayerTimes();
 updateDateLabel();
+updateHijriDate();
 
 (function () {
   emailjs.init("_XvJY_eZE5sYY9vhC");
