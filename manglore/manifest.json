@@ -1,6 +1,6 @@
 {
-  "name": "Prayer Timings",
-  "short_name": "Prayer",
+  "name": "Azan Timings",
+  "short_name": "Azan Timings",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
