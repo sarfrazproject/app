@@ -162,6 +162,10 @@ if(isToday(currentDate) && isAfterMaghrib()){
     hijriDate.setDate(hijriDate.getDate() + 1);
 }
 
+/* manual Saudi → local adjustment */
+const hijriOffset = -1; // change to -1, 0, or +1 if needed
+hijriDate.setDate(hijriDate.getDate() + hijriOffset);
+
 const day = hijriDate.getDate();
 const month = hijriDate.getMonth() + 1;
 const year = hijriDate.getFullYear();
@@ -173,19 +177,9 @@ try{
 const response = await fetch(url);
 const data = await response.json();
 
-let hijriDay =
-parseInt(data.data.hijri.day);
-
-let hijriMonth =
-data.data.hijri.month.en;
-
-let hijriYear =
-data.data.hijri.year;
-
-/* manual adjustment */
-const hijriOffset = -1;
-
-hijriDay = hijriDay + hijriOffset;
+let hijriDay = data.data.hijri.day;
+let hijriMonth = data.data.hijri.month.en;
+let hijriYear = data.data.hijri.year;
 
 document.getElementById("hijriDateLabel").innerText =
 `${hijriDay} ${hijriMonth} ${hijriYear} AH`;
